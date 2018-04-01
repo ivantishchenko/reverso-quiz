@@ -1,0 +1,1 @@
+Automation of card creation for Quizlets by using content based dictionary.

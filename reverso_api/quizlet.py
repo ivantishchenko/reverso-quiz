@@ -26,7 +26,7 @@ class QuizletAPI:
         print(res)
 
     def postMissingCards(self):
-        print("Posting missing cards")
+        print("Posting missing cards:")
         cache = []
         with open(self.OUT_NAME, 'r', newline="") as csvfile:
             reader = csv.reader(csvfile, delimiter=",")
@@ -41,7 +41,5 @@ class QuizletAPI:
             for line in cache:
                 dict_writer.writerow(line)
                 
-
-
-a = QuizletAPI()
-a.postMissingCards()
+# a = QuizletAPI()
+# a.postMissingCards()

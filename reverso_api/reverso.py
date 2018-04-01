@@ -58,5 +58,5 @@ class DictionaryAPI:
                     dict_writer.writerow([src, term, trg, date])
 
 
-a = DictionaryAPI()
-a.buildCSV()
+# a = DictionaryAPI()
+# a.buildCSV()
