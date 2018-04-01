@@ -1,3 +1,5 @@
+reverso_api/*.csv
+
 *.py[cod]
 .python-version
 
