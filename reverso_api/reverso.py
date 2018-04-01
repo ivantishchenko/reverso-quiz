@@ -28,13 +28,14 @@ class DictionaryAPI:
                 src = each_entry['srcText']
                 trg = each_entry['trgText']
                 context = each_entry['srcContext']
+                date = each_entry['creationDate']
 
                 context = context.replace('<em>', '*').replace('</em>', '*')
                 src = "*" + src + "*"
 
                 term = src + " - [" + context + "]"
 
-                dict_writer.writerow([term, trg])
+                dict_writer.writerow([term, trg, date])
                 #dict_writer.writerow([src + " - [" + context +"]", trg])
 
 
