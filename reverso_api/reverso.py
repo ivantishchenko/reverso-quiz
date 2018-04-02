@@ -55,7 +55,7 @@ class DictionaryAPI:
                     context = context.replace('<em>', '*').replace('</em>', '*')
                     term = "*" + src + "*"
                     term = term + " - [" + context + "]"
-                    dict_writer.writerow([src, term, trg, date])
+                    dict_writer.writerow([src, term, trg, date, '0'])
 
 
 # a = DictionaryAPI()
