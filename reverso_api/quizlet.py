@@ -11,13 +11,13 @@ class QuizletAPI:
     def __init__(self):
         pass
 
-    def readToken(self):
+    def __readToken(self):
         with open(self.CREDENTIALS_FILE) as f:
             read_data = f.read()
             return read_data
     
-    def postCard(self, term, definition):
-        token = self.readToken()
+    def __postCard(self, term, definition):
+        token = self.__readToken()
         headers = {'Authorization': 'Bearer '+ token}
         data = {'term':term, 'definition':definition}
         r = requests.post(self.URL, headers=headers, data=data)
@@ -32,7 +32,7 @@ class QuizletAPI:
             reader = csv.reader(csvfile, delimiter=",")
             for i, line in enumerate(reader):
                 if line[4] == '0':
-                    self.postCard(line[1], line[2])
+                    self.__postCard(line[1], line[2])
                     line[4] = '1'
                 cache.append(line)
 
