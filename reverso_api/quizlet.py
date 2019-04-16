@@ -4,7 +4,8 @@ import csv
 class QuizletAPI:
 
     OUT_NAME = 'quiz.csv'
-    SET_ID = '282592606'
+    # SET_ID = '282592606'
+    SET_ID = '392374878'
     CREDENTIALS_FILE = 'credentials.txt'
     URL = 'https://api.quizlet.com/2.0/sets/' + SET_ID + '/terms'
 
