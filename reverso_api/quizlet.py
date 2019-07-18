@@ -1,6 +1,7 @@
 import requests
 import csv
 import time
+from requests.exceptions import HTTPError
 
 class QuizletAPI:
 
@@ -21,11 +22,19 @@ class QuizletAPI:
         token = self.__readToken()
         headers = {'Authorization': 'Bearer '+ token}
         data = {'term':term, 'definition':definition}
-        r = requests.post(self.URL, headers=headers, data=data)
-        res = r.text
-        print("Created card...")
-        print(res)
-        time.sleep(.300)
+        try:
+            r = requests.post(self.URL, headers=headers, data=data)
+            r.raise_for_status()
+            time.sleep(.900)
+            res = r.text
+            print("Created a card...")
+            print(res)
+            return True
+        except HTTPError as http_err:
+            print("Error while posting a card...")
+            print(r.status_code)
+            return False
+        
 
     def postMissingCards(self):
         print("Posting missing cards:")
@@ -34,8 +43,8 @@ class QuizletAPI:
             reader = csv.reader(csvfile, delimiter=",")
             for i, line in enumerate(reader):
                 if line[4] == '0':
-                    self.__postCard(line[1], line[2])
-                    line[4] = '1'
+                    if self.__postCard(line[1], line[2]):
+                        line[4] = '1'
                 cache.append(line)
 
         with open(self.OUT_NAME, 'w', newline="", encoding='utf-8') as csvfile:
