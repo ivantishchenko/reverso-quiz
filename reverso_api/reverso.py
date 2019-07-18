@@ -14,7 +14,7 @@ class DictionaryAPI:
     
     def __readCSVDictionary(self):
         try:
-            with open(self.OUT_NAME) as f:
+            with open(self.OUT_NAME, encoding='utf-8') as f:
                 # self.dict_content = [line.split() for line in f]
                 # print(self.dict_content)
                 self.dict_content = []
@@ -43,7 +43,7 @@ class DictionaryAPI:
         res = self.__getData()
         dictonaryData = res['data']
 
-        with open(self.OUT_NAME, 'a', newline="") as csvfile:
+        with open(self.OUT_NAME, 'a', newline="", encoding='utf-8') as csvfile:
             dict_writer = csv.writer(csvfile, delimiter=',')
             for each_entry in dictonaryData:
                 src = each_entry['srcText']

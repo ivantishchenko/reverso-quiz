@@ -1,11 +1,11 @@
 import requests
 import csv
+import time
 
 class QuizletAPI:
 
     OUT_NAME = 'quiz.csv'
-    # SET_ID = '282592606'
-    SET_ID = '392374878'
+    SET_ID = '415417844'
     CREDENTIALS_FILE = 'credentials.txt'
     URL = 'https://api.quizlet.com/2.0/sets/' + SET_ID + '/terms'
 
@@ -13,7 +13,7 @@ class QuizletAPI:
         pass
 
     def __readToken(self):
-        with open(self.CREDENTIALS_FILE) as f:
+        with open(self.CREDENTIALS_FILE, encoding='utf-8') as f:
             read_data = f.read()
             return read_data
     
@@ -25,11 +25,12 @@ class QuizletAPI:
         res = r.text
         print("Created card...")
         print(res)
+        time.sleep(.300)
 
     def postMissingCards(self):
         print("Posting missing cards:")
         cache = []
-        with open(self.OUT_NAME, 'r', newline="") as csvfile:
+        with open(self.OUT_NAME, 'r', newline="", encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile, delimiter=",")
             for i, line in enumerate(reader):
                 if line[4] == '0':
@@ -37,7 +38,7 @@ class QuizletAPI:
                     line[4] = '1'
                 cache.append(line)
 
-        with open(self.OUT_NAME, 'w', newline="") as csvfile:
+        with open(self.OUT_NAME, 'w', newline="", encoding='utf-8') as csvfile:
             dict_writer = csv.writer(csvfile, delimiter=',')
             for line in cache:
                 dict_writer.writerow(line)
