@@ -6,7 +6,7 @@ from requests.exceptions import HTTPError
 class QuizletAPI:
 
     OUT_NAME = 'quiz.csv'
-    SET_ID = '415417844'
+    SET_ID = '446045154'
     CREDENTIALS_FILE = 'credentials.txt'
     URL = 'https://api.quizlet.com/2.0/sets/' + SET_ID + '/terms'
 
